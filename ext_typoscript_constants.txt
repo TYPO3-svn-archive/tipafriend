@@ -1,0 +1,21 @@
+plugin.tipafriend {
+    # cat=plugin.tipafriend/file; type=file[html,htm,tmpl,txt]; label= Template File: HTML-template file for display of the Tip-a-Friend form
+  file.templateFile = EXT:tipafriend/pi/tipafriend_template.tmpl
+
+    # cat=plugin.tipafriend/typo; type=wrap; label= Wrap 1: This wrap is used in the template-file.
+  wrap1 = <font face="verdana" size=2 color=black> | </font>
+    # cat=plugin.tipafriend/typo; type=wrap; label= Wrap 2: This wrap is used in the template-file.
+  wrap2 = <font face="verdana" size=1 color=black> | </font>
+
+    # cat=plugin.tipafriend/color; type=color; label= Color 1: This bgcolor is used in the template-file.
+  color1 = #cccccc
+    # cat=plugin.tipafriend/color; type=color; label= Color 2: This bgcolor is used in the template-file.
+  color2 = #999999
+    # cat=plugin.tipafriend/color; type=color; label= Color 3: This bgcolor is used in the template-file.
+  color3 = #333333
+
+    # cat=plugin.tipafriend//; type=int+; label= PID for the Tip-form page.
+  PIDtipForm = 0
+    # cat=plugin.tipafriend/enable; type=boolean; label= Send page as HTML: If set, the mail is sent as an HTML mail.
+  htmlMail = 0
+}

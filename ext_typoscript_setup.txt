@@ -1,0 +1,22 @@
+## Includes the newsLib:
+includeLibs.ts_tipafriend= EXT:tipafriend/pi/class.tx_tipafriend.php
+
+## This enables the tt_content.list item to display the news:
+plugin.tipafriend >
+plugin.tipafriend = USER
+plugin.tipafriend {
+  userFunc = tx_tipafriend->main_tipafriend
+  code.field = select_key
+  templateFile = {$plugin.tipafriend.file.templateFile}
+
+  # Global wraps
+  wrap1.wrap = {$plugin.tipafriend.wrap1}
+  wrap2.wrap = {$plugin.tipafriend.wrap2}
+  color1.wrap = {$plugin.tipafriend.color1}
+  color2.wrap = {$plugin.tipafriend.color2}
+  color3.wrap = {$plugin.tipafriend.color3}
+
+  typolink.parameter = {$plugin.tipafriend.PIDtipForm}
+  htmlmail = {$plugin.tipafriend.htmlMail}
+
+}
