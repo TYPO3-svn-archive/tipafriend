@@ -1,0 +1,5 @@
+2004-08-09  Andreas Otto  <andreas.otto@dkd.de>
+
+	* Added the TYPO3_version flag.
+	* Created TYPO3_3_5_0 branch for 3.5.0 backwards compatibility.
+
