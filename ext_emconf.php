@@ -2,9 +2,9 @@
 
 ########################################################################
 # Extension Manager/Repository config file for ext: 'tipafriend'
-# 
+#
 # Auto generated 12-02-2003 21:18
-# 
+#
 # Manual updates:
 # Only the data in the array - anything else is removed by next write
 ########################################################################
@@ -15,6 +15,7 @@ $EM_CONF[$_EXTKEY] = Array (
 	'category' => 'plugin',
 	'shy' => 0,
 	'dependencies' => 'cms',
+	'TYPO3_version' => '3.5.0'
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
