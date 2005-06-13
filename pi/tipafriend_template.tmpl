@@ -55,7 +55,7 @@ GC4
 	</TR>
 	<TR bgcolor="###GC1###">
 		<TD colspan=3 align=center>###GW1B###You're now sending this link to an email recipient:###GW1E###<BR><br>
-		###GW2B###<a href="###URL###" target="_blank">###URL_SPECIALCHARS###</a>###GW2E###</TD>
+		###GW2B###<a href="###URL###" target="_blank">###URL_DISPLAY###</a>###GW2E###</TD>
 	</TR>
 <!--###ERROR_MSG### this subpart is removed if the form has no errors! -->
 	<TR bgcolor="###GC1###">
@@ -86,6 +86,11 @@ GC4
 		<TD>###GW1B###HTML message:###GW1E###</TD>
 		<TD></TD>
 		<TD><input type="checkbox" name="TIPFORM[html_message]" value="1" ###HTML_MESSAGE###></TD>
+	</TR>
+	<TR bgcolor="###GC1###">
+		<TD>###GW1B###Repeat code: *###GW1E###<BR>###GW2B###(To prevent misuse of this form we kindly ask you to read the letters in the image and repeat them in the form field.)###GW2E###</TD>
+		<TD></TD>
+		<TD>###CAPTCHA_HTML###<input type="text" size=30 name="TIPFORM[captchaResponse]" value=""></TD>
 	</TR>
 	<TR bgcolor="###GC2###">
 		<TD>###GW2B###(You <u>must</u> fill in fields with * correctly!)###GW2E###</TD>

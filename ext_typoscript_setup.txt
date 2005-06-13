@@ -1,5 +1,5 @@
 ## Includes the newsLib:
-includeLibs.ts_tipafriend= EXT:tipafriend/pi/class.tx_tipafriend.php
+includeLibs.ts_tipafriend = EXT:tipafriend/pi/class.tx_tipafriend.php
 
 ## This enables the tt_content.list item to display the news:
 plugin.tipafriend >

@@ -3,9 +3,9 @@ plugin.tipafriend {
   file.templateFile = EXT:tipafriend/pi/tipafriend_template.tmpl
 
     # cat=plugin.tipafriend/typo; type=wrap; label= Wrap 1: This wrap is used in the template-file.
-  wrap1 = <font face="verdana" size=2 color=black> | </font>
+  wrap1 = <font face="verdana" size="2" color="black"> | </font>
     # cat=plugin.tipafriend/typo; type=wrap; label= Wrap 2: This wrap is used in the template-file.
-  wrap2 = <font face="verdana" size=1 color=black> | </font>
+  wrap2 = <font face="verdana" size="1" color="black"> | </font>
 
     # cat=plugin.tipafriend/color; type=color; label= Color 1: This bgcolor is used in the template-file.
   color1 = #cccccc
