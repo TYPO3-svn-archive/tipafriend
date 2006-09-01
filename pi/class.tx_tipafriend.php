@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 1999-2004 Kasper Skaarhoj (kasperYYYY@typo3.com)
+*  (c) 1999-2006 Kasper Skaarhoj (kasperYYYY@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -120,6 +120,7 @@ class tx_tipafriend extends tslib_pibase {
 
 						// Markers and substitution:
 					$markerArray['###CODE###'] = $this->theCode;
+					$markerArray['###PATH_HELP_IMAGE###'] = t3lib_extMgm::siteRelPath('tipafriend').'pi/tipafriend_help.gif';
 					$content.=$this->cObj->substituteMarkerArray($helpTemplate,$markerArray);
 				break;
 			}
