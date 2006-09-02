@@ -34,15 +34,17 @@
  *
  *
  *
- *   65: class tx_tipafriend extends tslib_pibase
- *   76:     function main_tipafriend($content,$conf)
- *  135:     function tipform()
- *  201:     function validate($tipData)
- *  217:     function getRecipients($emails)
- *  237:     function sendTip($tipData,$url)
- *  297:     function tiplink()
+ *   61: class tx_tipafriend extends tslib_pibase
+ *   72:     function main_tipafriend($content,$conf)
+ *  131:     function tipform()
+ *  216:     function validateUrl($url)
+ *  241:     function validate($tipData,$captchaStr='')
+ *  258:     function getRecipients($emails)
+ *  278:     function sendTip($tipData,$url)
+ *  338:     function tiplink()
+ *  364:     function getCaptchaElements()
  *
- * TOTAL FUNCTIONS: 6
+ * TOTAL FUNCTIONS: 8
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
@@ -139,7 +141,8 @@ class tx_tipafriend extends tslib_pibase {
 		$tipData = t3lib_div::_GP('TIPFORM');
 		$tipData['recipient'] = $this->getRecipients($tipData['recipient']);
 		list($tipData['email']) = explode(',',$this->getRecipients($tipData['email']));
-		$url = t3lib_div::_GP('tipUrl');
+
+		$url = $this->validateUrl(t3lib_div::_GP('tipUrl'));
 
 			// Preparing markers
 		$wrappedSubpartArray=array();
@@ -150,14 +153,19 @@ class tx_tipafriend extends tslib_pibase {
 		$markerArray['###URL###']=$url;
 		$markerArray['###URL_ENCODED###']=rawurlencode($url);
 		$markerArray['###URL_SPECIALCHARS###']=htmlspecialchars($url);
-		$markerArray['###URL_DISPLAY###']=htmlspecialchars(strlen($url)>70 ? t3lib_div::fixed_lgd($url,30).t3lib_div::fixed_lgd($url,-30) : $url);
+		if ($url)	{
+			$markerArray['###URL_DISPLAY###']=htmlspecialchars(strlen($url)>70 ? t3lib_div::fixed_lgd($url,30).t3lib_div::fixed_lgd($url,-30) : $url);
+		} else {
+			// display an error if the URL was unset or if it is missing
+			$markerArray['###URL_DISPLAY###'] = '<strong style="color:red;">ERROR: malformed or missing URL detected!</strong>';
+		}
 
 		$wrappedSubpartArray['###LINK###']=array('<a href="'.htmlspecialchars($url).'">','</a>');
 
 			// validation
 		$error=0;
 		$sent=0;
-		if (t3lib_div::_GP('sendTip'))	{
+		if (t3lib_div::_GP('sendTip') && $url)	{
 
 			if (t3lib_extMgm::isLoaded('captcha'))	{
 				session_start();
@@ -187,7 +195,6 @@ class tx_tipafriend extends tslib_pibase {
 
 				// Generate Captcha data and store string in session:
 
-
 			$subpart = $this->cObj->getSubpart($this->templateCode,'###TEMPLATE_TIPFORM###');
 
 			$markerArray['###MESSAGE###']=htmlspecialchars($tipData['message']);
@@ -201,13 +208,8 @@ class tx_tipafriend extends tslib_pibase {
 				$subpartArray['###ERROR_MSG###']='';
 			}
 
-//			debug($markerArray);
-
 				// Substitute
 			$content= $this->cObj->substituteMarkerArrayCached($subpart,$markerArray,$subpartArray,$wrappedSubpartArray);
-
-#session_start();
-#$content.=$_SESSION['tx_captcha_string'];
 		}
 		return $content;
 	}
@@ -215,7 +217,30 @@ class tx_tipafriend extends tslib_pibase {
 	/**
 	 * [Describe function...]
 	 *
+	 * @param	[type]		$url: ...
+	 * @return	[type]		...
+	 */
+	function validateUrl($url)	{
+			// remove hmtl tags from url
+ 		$url = strip_tags($url);
+
+			// If the URL contains a '"', unset $url (suspecting XSS code)
+		if (strstr($url,'"'))	{
+			$url = false;
+		}
+			// check if the first part of the url is actually the server where tip-a-friend is installed. If not, unset $url.
+		if(!preg_match('#\A'.t3lib_div::getIndpEnv('TYPO3_SITE_URL').'#',$url))	{
+			$url = false;
+		}
+
+		return $url;
+	}
+
+	/**
+	 * [Describe function...]
+	 *
 	 * @param	[type]		$tipData: ...
+	 * @param	[type]		$captchaStr: ...
 	 * @return	[type]		...
 	 */
 	function validate($tipData,$captchaStr='')	{
@@ -336,11 +361,11 @@ class tx_tipafriend extends tslib_pibase {
 		return $content;
 	}
 
-
-
-
-
-
+	/**
+	 * [Describe function...]
+	 *
+	 * @return	[type]		...
+	 */
 	function getCaptchaElements()	{
 		$code = substr(md5(uniqid()),0,10);
 

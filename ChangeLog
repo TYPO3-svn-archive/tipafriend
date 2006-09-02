@@ -1,3 +1,7 @@
+2006-09-02  Rupert Germann  <rupi@gmx.li>
+
+	* Security fixes: added the function validateUrl() to prevent cross-site-scripting. The function removes all html-tags from the tipUrl parameter and it checks for '"' (doublequote) in tipUrl. Additionally it checks if the given tipUrl belongs to the server to prevent sending urls of foreign servers.
+
 2006-09-02  Michael Stucki  <michael@typo3.org>
 
 	* Changed path to help image if no CODE was given
