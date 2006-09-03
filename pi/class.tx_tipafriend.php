@@ -303,7 +303,7 @@ class tx_tipafriend extends tslib_pibase {
 			// HTML
 		$cls=t3lib_div::makeInstanceClassName('t3lib_htmlmail');
 
-		if (class_exists($cls) && $this->conf['htmlmail'] && $tipData['html_message'])	{	// If htmlmail lib is included, then generate a nice HTML-email
+		if ($tipData['html_message'] && $this->conf['htmlmail'] && class_exists($cls))	{	// If htmlmail lib is included, then generate a nice HTML-email
 			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
 			$Typo3_htmlmail->start();
 			$Typo3_htmlmail->useBase64();
