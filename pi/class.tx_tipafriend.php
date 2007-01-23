@@ -239,19 +239,35 @@ class tx_tipafriend extends tslib_pibase {
 	/**
 	 * [Describe function...]
 	 *
-	 * @param	[type]		$tipData: ...
-	 * @param	[type]		$captchaStr: ...
-	 * @return	[type]		...
+	 * @param	array		$tipData: data sent from form
+	 * @param	mixed		$captchaStr: comparison value for captcha sent from form
+	 * @return	bool		validity of form data
 	 */
-	function validate($tipData,$captchaStr='')	{
-		if (
-			trim($tipData['name']) &&
-			$tipData['email'] &&
-			$tipData['recipient'] &&
-			($captchaStr===-1 || ($captchaStr && $tipData['captchaResponse']===$captchaStr))
-			) {
-				return 1;
+	function validate(&$tipData,$captchaStr='')	{
+		$ret = true;
+		if ( trim($tipData['name']) ) {
+			if ( preg_match( '/[\r\n\f\e]/', $tipData['name'] ) > 0 )	{
+					// stop if there is a newline, carriage return, ...
+				$tipData['name'] = '';
+				$ret = false;
+			} else {
+				$pattern = '/[^\d\s\w]/';	// search for characters that don't belong to one of the classes decimal, whitespace or word 
+				$tipData['name'] = trim( preg_replace( $pattern, '', $tipData['name'] ) );	// strip the mentioned characters
 			}
+		}
+		if (
+			! (
+				$ret &&
+				$tipData['name'] &&
+				$tipData['email'] &&
+				$tipData['recipient'] &&
+				($captchaStr===-1 || ($captchaStr && $tipData['captchaResponse']===$captchaStr))
+			)
+		) {
+				$ret = false;
+		}
+
+		return $ret;
 	}
 
 	/**
