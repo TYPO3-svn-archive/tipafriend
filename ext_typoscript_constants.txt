@@ -18,4 +18,6 @@ plugin.tipafriend {
   PIDtipForm = 0
     # cat=plugin.tipafriend/enable; type=boolean; label= Send page as HTML: If set, the mail is sent as an HTML mail.
   htmlMail = 0
+    # cat=plugin.tipafriend/enable; type=boolean; label= Use captcha for spam protection: If set, a captcha field is displayed.
+  useCaptcha = 1
 }

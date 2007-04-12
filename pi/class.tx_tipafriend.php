@@ -167,7 +167,7 @@ class tx_tipafriend extends tslib_pibase {
 		$sent=0;
 		if (t3lib_div::_GP('sendTip') && $url)	{
 
-			if (t3lib_extMgm::isLoaded('captcha'))	{
+			if (t3lib_extMgm::isLoaded('captcha') && $this->conf['useCaptcha'] == 1)	{
 				session_start();
 				$captchaStr = $_SESSION['tx_captcha_string'];
 				$_SESSION['tx_captcha_string'] = '';
