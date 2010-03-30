@@ -1,3 +1,7 @@
+2010-03-30  Oliver Hader  <oliver@typo3.org>
+
+	* Fixed issue #7073: TipAFriend uses t3lib_div::fixed_lgd() which is deprecated (thanks to Tolleiv Nietsch)
+
 2007-04-03 Andreas Otto <andreas.otto@dkd.de>
 	* New TS option for class.tx_tipafriend.php, method tipform(): Added a TS constant useCaptcha and a corresponding TS configuration useCaptcha which defaults to 1 for backwards compatibility. It is now possible to turn off the captcha feature. Thanks to Ingo Schmitt <is@marketing-factory.de> for providing a first patch.
 

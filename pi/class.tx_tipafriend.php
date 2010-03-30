@@ -154,7 +154,7 @@ class tx_tipafriend extends tslib_pibase {
 		$markerArray['###URL_ENCODED###']=rawurlencode($url);
 		$markerArray['###URL_SPECIALCHARS###']=htmlspecialchars($url);
 		if ($url)	{
-			$markerArray['###URL_DISPLAY###']=htmlspecialchars(strlen($url)>70 ? t3lib_div::fixed_lgd($url,30).t3lib_div::fixed_lgd($url,-30) : $url);
+			$markerArray['###URL_DISPLAY###'] = htmlspecialchars(strlen($url) > 70 ? t3lib_div::fixed_lgd_cs($url, 30) . t3lib_div::fixed_lgd_cs($url, -30) : $url);
 		} else {
 			// display an error if the URL was unset or if it is missing
 			$markerArray['###URL_DISPLAY###'] = '<strong style="color:red;">ERROR: malformed or missing URL detected!</strong>';
