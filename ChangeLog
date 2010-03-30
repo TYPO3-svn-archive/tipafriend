@@ -1,20 +1,26 @@
 2010-03-30  Oliver Hader  <oliver@typo3.org>
 
 	* Fixed issue #7073: TipAFriend uses t3lib_div::fixed_lgd() which is deprecated (thanks to Tolleiv Nietsch)
+	* Cleanup: Fixed ChangeLog
 
-2007-04-03 Andreas Otto <andreas.otto@dkd.de>
+2007-04-03  Andreas Otto  <andreas.otto@dkd.de>
+
 	* New TS option for class.tx_tipafriend.php, method tipform(): Added a TS constant useCaptcha and a corresponding TS configuration useCaptcha which defaults to 1 for backwards compatibility. It is now possible to turn off the captcha feature. Thanks to Ingo Schmitt <is@marketing-factory.de> for providing a first patch.
 
 2007-01-23  Andreas Otto <andreas.otto@dkd.de>, Thorsten Kahler <thorsten.kahler@dkd.de>
+
 	* Security fixes, class.tx_tipafriend.php, method validate(): A mail injection possibility was detected and removed.
 
 2006-09-02  Rupert Germann  <rupi@gmx.li>
+
 	* Security fixes: added the function validateUrl() to prevent cross-site-scripting. The function removes all html-tags from the tipUrl parameter and it checks for '"' (doublequote) in tipUrl. Additionally it checks if the given tipUrl belongs to the server to prevent sending urls of foreign servers.
 
 2006-09-02  Michael Stucki  <michael@typo3.org>
+
 	* Changed path to help image if no CODE was given
 	* Fixed manual.sxw which was broken in SVN (but not in TER)
 
 2004-08-09  Andreas Otto  <andreas.otto@dkd.de>
+
 	* Added the TYPO3_version flag.
 	* Created TYPO3_3_5_0 branch for 3.5.0 backwards compatibility.
