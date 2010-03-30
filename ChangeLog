@@ -2,6 +2,7 @@
 
 	* Fixed issue #7073: TipAFriend uses t3lib_div::fixed_lgd() which is deprecated (thanks to Tolleiv Nietsch)
 	* Cleanup: Fixed ChangeLog
+	* Cleanup: Defined svn:eol-style property 
 
 2007-04-03  Andreas Otto  <andreas.otto@dkd.de>
 
